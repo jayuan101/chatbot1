@@ -1,9 +1,7 @@
 streamlit
 openai==0.27.7
 pandasai==0.5.0
-pathlib
 pickle-mixin
-data
 pandas==2.0.3
 streamlit
 numpy==1.25.2
