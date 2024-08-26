@@ -3,3 +3,4 @@ openai
 pandasai
 pathlib
 pickle
+data
