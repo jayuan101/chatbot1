@@ -11,8 +11,16 @@ import pickle
 from pathlib import Path
 import pandas as pd
 import numpy as np
+import os
+import pickle
+from pathlib import Path
+import streamlit as st
+from pandasai import PandasAI
+from pandasai.llm.openai import OpenAI
+from pandasai.callbacks import BaseCallback
+from pandasai.responses.response_parser import ResponseParser
 import warnings 
-import streamlit
+
 
 def load_file(path: str) -> str:
     with open(path, "rb") as f:
