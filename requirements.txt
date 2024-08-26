@@ -4,3 +4,5 @@ pandasai
 pathlib
 pickle-mixin
 data
+pandas
+numpy 
