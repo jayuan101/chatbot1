@@ -7,3 +7,4 @@ data
 pandas==2.0.3
 streamlit
 numpy==1.25.2
+etuptools wheel
