@@ -39,7 +39,7 @@ st.write('Chat Credit Cardd Fraud')
 df = data.load_data("./data")
 
 with st.expander ("see datasets preview"):
-st.write(df.tail(100))
+    st.write(df.tail(100))
 
 query = st.text_input("Chat with Dataframe")
 container = st.container()
