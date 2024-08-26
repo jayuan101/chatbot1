@@ -21,43 +21,46 @@ from pandasai import PandasAI
 from pandasai.callbacks import BaseCallback
 import warnings 
 
-
 class StreamlitResponse(ResponseParser):
-  def __init__(self, context) -> None:
-    super().__init__(context)
+    def __init__(self, context) -> None:
+        super().__init__(context)
 
-  def format_dataframe(self, result):
-    st.Dataframe(result["value"])
-    return result
+    def format_dataframe(self, result):
+        st.dataframe(result["value"])  # Corrected method name
+        return result
 
-  def format_plot(self, result):
-    st.image(result["value"])
-    return result
-  def format_other(self, result):
-    st.write(result["value"])
+    def format_plot(self, result):
+        st.image(result["value"])
+        return result
+
+    def format_other(self, result):
+        st.write(result["value"])
 
 class StreamlitCallback(BaseCallback):
-  def __init__ (self, container) -> None:
-    super().__init__(container)
-  def on_code(self,response: str):
-    self.container.code(response)
+    def __init__(self, container) -> None:
+        super().__init__(container)
+        
+    def on_code(self, response: str):
+        self.container.code(response)
 
-st.write('Chat Credit Cardd Fraud')
+st.write('Chat Credit Card Fraud')
 
-df = data.load_data("./data")
+df = load_data("./data")  # Corrected function name
 
-with st.expander ("see datasets preview"):
+with st.expander("see datasets preview"):
     st.write(df.tail(100))
 
 query = st.text_input("Chat with Dataframe")
 container = st.container()
 
-query_engine = StartDataframe(
-    df,
-    config={
-        "llm": llm,  # Add a comma here
-        "response_parser": StreamlitResponse,  # Fixed typo
-        "Callback": StreamlitCallback(container),
-    },
-)
-  answer = query_engine.query(query)
+if query:
+    llm = OpenAI(api_token=os.environ.get("OPENAI_API_KEY"))
+    query_engine = StartDataframe(
+        df,
+        config={
+            "llm": llm,
+            "response_parser": StreamlitResponse,  # Fixed typo
+            "Callback": StreamlitCallback(container),
+        },
+    )
+    answer = query_engine.query(query)
