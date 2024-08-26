@@ -12,8 +12,6 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 import os
-import pickle
-from pathlib import Path
 import streamlit as st
 from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
