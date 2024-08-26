@@ -52,14 +52,12 @@ with st.expander ("see datasets preview"):
 query = st.text_input("Chat with Dataframe")
 container = st.container()
 
-if query:
-  llm = OpenAI(api_token=os.environ.get("OPENAI_API_KEY"))
-  query_engine = StartDataframe(
-      df,
-      config={
-        "llm": llm
-      "reponce_parser": StreamlitResponse,
-      "Callback":StreamlitCallback(container),
-      },
-  )
+query_engine = StartDataframe(
+    df,
+    config={
+        "llm": llm,  # Add a comma here
+        "response_parser": StreamlitResponse,  # Fixed typo
+        "Callback": StreamlitCallback(container),
+    },
+)
   answer = query_engine.query(query)
